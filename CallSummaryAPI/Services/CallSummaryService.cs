@@ -43,14 +43,14 @@ namespace CallSummaryAPI.Services
             var filteredCalls = callData.Where(c => c.CallDate.Date == date.Date).ToList();
 
             var totalCalls = filteredCalls.Count;
-            var totalDuration = filteredCalls.Sum(c => c.Duration?.Seconds ?? 0);
+            var totalDuration = filteredCalls.Sum(c => c.Duration?.TotalSeconds ?? 0);
 
             var avgDuration = totalCalls > 0 ? totalDuration / totalCalls : 0;
 
             var hourlySummary = Enumerable.Range(8, 10).Select(hour =>
             {
                 var callsInHour = filteredCalls.Where(c => c.CallDate.Hour == hour).ToList();
-                var totalDurationInHour = callsInHour.Sum(c => c.Duration?.Seconds ?? 0);
+                var totalDurationInHour = callsInHour.Sum(c => c.Duration?.TotalSeconds ?? 0);
                 var totalCallsInHour = callsInHour.Count;
                 var AvgDurationInHour = totalCallsInHour > 0 ? totalDurationInHour / totalCallsInHour : 0;
 

@@ -11,7 +11,7 @@ namespace CallSummaryAPI.Models
         public string? Source { get; set; }
         public string? Destination { get; set; }
         public Duration? Duration { get; set; }
-        public List<object> ConnectedExtensions { get; set; } = new List<object>();
+        public List<Extension> ConnectedExtensions { get; set; } = new List<Extension>();
     }
 
     public class Duration
@@ -27,5 +27,11 @@ namespace CallSummaryAPI.Models
         public int TotalMilliseconds { get; set; }
         public double TotalMinutes { get; set; }
         public int TotalSeconds { get; set; }
+    }
+
+    public class Extension
+    {
+        public string? Name { get; set; }
+        public string? Number { get; set; }
     }
 }
